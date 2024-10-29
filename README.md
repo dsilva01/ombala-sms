@@ -109,6 +109,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
+- [Desiderio Silva](https://github.com/dsilva01)
 - [Tint Naing Win](https://github.com/tintnaingwinn)
 - [All Contributors](../../contributors)
 
