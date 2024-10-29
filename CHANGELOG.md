@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to `smspoh` will be documented in this file
+All notable changes to `ombala` will be documented in this file
 
 ## v1.5.0 - 2024-04-07
 

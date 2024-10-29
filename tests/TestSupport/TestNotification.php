@@ -1,14 +1,14 @@
 <?php
 
-namespace NotificationChannels\Smspoh\Tests\TestSupport;
+namespace NotificationChannels\Ombala\Tests\TestSupport;
 
 use Illuminate\Notifications\Notification;
-use NotificationChannels\Smspoh\SmspohMessage;
+use NotificationChannels\Ombala\OmbalaMessage;
 
 class TestNotification extends Notification
 {
-    public function toSmspoh($notifiable): SmspohMessage
+    public function toOmbala($notifiable): OmbalaMessage
     {
-        return (new SmspohMessage('this is my message'))->sender('5554443333');
+        return (new OmbalaMessage('this is my message'))->from('9223123321');
     }
 }

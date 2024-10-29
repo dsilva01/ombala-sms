@@ -1,31 +1,31 @@
 <?php
 
-namespace NotificationChannels\Smspoh;
+namespace NotificationChannels\Ombala;
 
 use Illuminate\Notifications\Notification;
-use NotificationChannels\Smspoh\Exceptions\CouldNotSendNotification;
+use NotificationChannels\Ombala\Exceptions\CouldNotSendNotification;
 
-class SmspohChannel
+class OmbalaChannel
 {
     /**
-     * The Smspoh client instance.
+     * The Ombala client instance.
      */
-    protected SmspohApi $smspoh;
+    protected OmbalaApi $ombala;
 
     /**
      * The phone number notifications should be sent from.
      */
-    protected string $sender;
+    protected string $from;
 
     /**
      * The message body content count should be no longer than 6 message parts(918).
      */
     protected int $character_limit_count = 918;
 
-    public function __construct(SmspohApi $smspoh, $sender)
+    public function __construct(OmbalaApi $ombala, $from)
     {
-        $this->smspoh = $smspoh;
-        $this->sender = $sender;
+        $this->ombala = $ombala;
+        $this->from = $from;
     }
 
     /**
@@ -38,26 +38,25 @@ class SmspohChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        if (! $to = $notifiable->routeNotificationFor('smspoh', $notification)) {
+        if (! $to = $notifiable->routeNotificationFor('ombala', $notification)) {
             return;
         }
 
         /* @phpstan-ignore-next-line */
-        $message = $notification->toSmspoh($notifiable);
+        $message = $notification->toOmbala($notifiable);
 
         if (is_string($message)) {
-            $message = new SmspohMessage($message);
+            $message = new OmbalaMessage($message);
         }
 
         if (mb_strlen($message->content) > $this->character_limit_count) {
             throw CouldNotSendNotification::contentLengthLimitExceeded($this->character_limit_count);
         }
 
-        return $this->smspoh->send([
-            'sender' => $message->sender ?: $this->sender,
+        return $this->ombala->send([
+            'from' => $message->from ?: $this->from,
             'to' => $to,
             'message' => trim($message->content),
-            'test' => $message->test ?: false,
         ]);
     }
 }

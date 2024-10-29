@@ -1,10 +1,10 @@
 <?php
 
-namespace NotificationChannels\Smspoh\Tests\TestSupport;
+namespace NotificationChannels\Ombala\Tests\TestSupport;
 
-class TestNotifiableWithoutRouteNotificationForSmspoh extends TestNotifiable
+class TestNotifiableWithoutRouteNotificationForOmbala extends TestNotifiable
 {
-    public function routeNotificationForSmspoh($notification)
+    public function routeNotificationForOmbala($notification)
     {
         return false;
     }

@@ -1,30 +1,30 @@
 <?php
 
-namespace NotificationChannels\Smspoh\Tests;
+namespace NotificationChannels\Ombala\Tests;
 
 use Mockery;
-use NotificationChannels\Smspoh\SmspohApi;
-use NotificationChannels\Smspoh\SmspohChannel;
-use NotificationChannels\Smspoh\SmspohServiceProvider;
+use NotificationChannels\Ombala\OmbalaApi;
+use NotificationChannels\Ombala\OmbalaChannel;
+use NotificationChannels\Ombala\OmbalaServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
 {
-    protected SmspohApi $smspohApi;
+    protected OmbalaApi $OmbalaApi;
 
-    protected SmspohChannel $channel;
+    protected OmbalaChannel $channel;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->app->singleton(SmspohApi::class, function () {
-            return Mockery::mock(SmspohApi::class);
+        $this->app->singleton(OmbalaApi::class, function () {
+            return Mockery::mock(OmbalaApi::class);
         });
 
-        $this->smspohApi = app(SmspohApi::class);
+        $this->OmbalaApi = app(OmbalaApi::class);
 
-        $this->channel = new SmspohChannel($this->smspohApi, '4444444444');
+        $this->channel = new OmbalaChannel($this->OmbalaApi, '4444444444');
     }
 
     /**
@@ -33,7 +33,7 @@ abstract class TestCase extends Orchestra
     protected function getPackageProviders($app): array
     {
         return [
-            SmspohServiceProvider::class,
+            OmbalaServiceProvider::class,
         ];
     }
 }

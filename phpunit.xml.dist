@@ -8,7 +8,7 @@
     </report>
   </coverage>
   <testsuites>
-    <testsuite name="Smspoh Channel Test Suite">
+    <testsuite name="Ombala Channel Test Suite">
       <directory suffix="Test.php">./tests</directory>
     </testsuite>
   </testsuites>

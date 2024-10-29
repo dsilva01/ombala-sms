@@ -1,20 +1,20 @@
 <?php
 
-namespace NotificationChannels\Smspoh;
+namespace NotificationChannels\Ombala;
 
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Arr;
-use NotificationChannels\Smspoh\Exceptions\CouldNotSendNotification;
+use NotificationChannels\Ombala\Exceptions\CouldNotSendNotification;
 
-class SmspohApi
+class OmbalaApi
 {
     protected HttpClient $client;
 
     protected string $endpoint;
 
-    protected string $sender;
+    protected string $from;
 
     protected mixed $token;
 
@@ -23,7 +23,7 @@ class SmspohApi
         $this->token = $token;
         $this->client = $httpClient;
 
-        $this->endpoint = config('services.smspoh.endpoint', 'https://smspoh.com/api/v2/send');
+        $this->endpoint = config('services.ombala.endpoint', 'https://api.useombala.ao/v1/messages');
     }
 
     /**
@@ -31,14 +31,14 @@ class SmspohApi
      *
      * <code>
      * $message = [
-     *   'sender'   => '',
+     *   'from'   => '',
      *   'to'       => '',
      *   'message'  => '',
      *   'test'     => '',
      * ];
      * </code>
      *
-     * @link https://smspoh.com/rest-api-documentation/send?version=2
+     * @link https://developer.useombala.ao/
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
      *
@@ -49,21 +49,21 @@ class SmspohApi
         try {
             $response = $this->client->request('POST', $this->endpoint, [
                 'headers' => [
-                    'Authorization' => "Bearer {$this->token}",
+                    'Authorization' => "Token {$this->token}",
+                    'Content-Type' => "application/json",
                 ],
                 'json' => [
-                    'sender' => Arr::get($message, 'sender'),
+                    'from' => Arr::get($message, 'from'),
                     'to' => Arr::get($message, 'to'),
                     'message' => Arr::get($message, 'message'),
-                    'test' => Arr::get($message, 'test', false),
                 ],
             ]);
 
             return json_decode((string) $response->getBody(), true);
         } catch (ClientException $e) {
-            throw CouldNotSendNotification::smspohRespondedWithAnError($e);
+            throw CouldNotSendNotification::ombalaRespondedWithAnError($e);
         } catch (GuzzleException $e) {
-            throw CouldNotSendNotification::couldNotCommunicateWithSmspoh($e);
+            throw CouldNotSendNotification::couldNotCommunicateWithOmbala($e);
         }
     }
 }

@@ -1,14 +1,14 @@
 {
-    "name": "laravel-notification-channels/smspoh",
-    "description": "Smspoh Notifications channel for Laravel 9.x and 10.x.",
-    "keywords": ["laravel", "notifications", "smspoh", "message", "sms", "myanmar", "MPT", "Telenor", "Ooredoo", "MyTel"],
-    "homepage": "https://github.com/laravel-notification-channels/smspoh",
+    "name": "dsilva01/ombala-sms",
+    "description": "Ombala Notifications channel for Laravel 9.x and 10.x.",
+    "keywords": ["laravel", "notifications", "ombala", "message", "sms", "myanmar", "MPT", "Telenor", "Ooredoo", "MyTel"],
+    "homepage": "https://github.com/dsilva01/ombala-sms",
     "license": "MIT",
     "authors": [
         {
-            "name": "Tint Naing Win",
-            "email": "amigo.k8@gmail.com",
-            "homepage": "https://github.com/tintnaingwinn",
+            "name": "Desiderio Silva",
+            "email": "desideriotbs@gmail.com",
+            "homepage": "https://github.com/dsilva01",
             "role": "Developer"
         }
     ],
@@ -32,12 +32,12 @@
     },
     "autoload": {
         "psr-4": {
-            "NotificationChannels\\Smspoh\\": "src"
+            "NotificationChannels\\Ombala\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "NotificationChannels\\Smspoh\\Tests\\": "tests"
+            "NotificationChannels\\Ombala\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -57,7 +57,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "NotificationChannels\\Smspoh\\SmspohServiceProvider"
+                "NotificationChannels\\Ombala\\OmbalaServiceProvider"
             ]
         }
     },

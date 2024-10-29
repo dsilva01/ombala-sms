@@ -1,16 +1,16 @@
-# Smspoh Notifications Channel for Laravel
+# Ombala Notifications Channel for Laravel
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/smspoh.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/smspoh)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/smspoh.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/smspoh)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/laravel-notification-channels/smspoh/run-tests.yml?style=flat-square)](https://github.com/laravel-notification-channels/smspoh/actions/workflows/run-tests.yml)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/ombala.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/ombala)
+[![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/ombala.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/ombala)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/laravel-notification-channels/ombala/run-tests.yml?style=flat-square)](https://github.com/dsilva01/ombala-sms/actions/workflows/run-tests.yml)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 
-This package makes it easy to send notifications using [SmsPoh](https://smspoh.com/) with Laravel and 9.x and 10.x.
+This package makes it easy to send notifications using [Ombala](https://www.useombala.ao/) with Laravel and 9.x and 10.x.
 
 ## Contents
 
 - [Installation](#installation)
-	- [Setting up the smspoh](#setting-up-the-smspoh-service)
+	- [Setting up the ombala](#setting-up-the-ombala-service)
 - [Usage](#usage)
 	- [Available Message methods](#available-message-methods)
 	- [ On-Demand Notifications](#on-demand-notifications)
@@ -26,20 +26,20 @@ This package makes it easy to send notifications using [SmsPoh](https://smspoh.c
 
 You can install this package via composer:
 ``` bash
-composer require laravel-notification-channels/smspoh
+composer require dsilva01/ombala-sms
 ```
 
-### Setting up the Smspoh service
+### Setting up the Ombala service
 
-Add your Smspoh token, default sender name (or phone number) to your config/services.php:
+Add your Ombala token, default from name (or phone number) to your config/services.php:
 
 ```php
 // config/services.php
 ...
-'smspoh' => [
-    'endpoint' => env('SMSPOH_ENDPOINT', 'https://smspoh.com/api/v2/send'),
-    'token' => env('SMSPOH_TOKEN', 'YOUR SMSPOH TOKEN HERE'),
-    'sender' => env('SMSPOH_SENDER', 'YOUR SMSPOH SENDER HERE')
+'ombala' => [
+    'endpoint' => env('OMBALA_ENDPOINT', 'https://api.useombala.ao/v1/messages'),
+    'token' => env('OMBALA_TOKEN', 'YOUR OMBALA TOKEN HERE'),
+    'from' => env('OMBALA_SENDER', 'YOUR OMBALA SENDER HERE')
 ],
 ...
 ```
@@ -50,26 +50,26 @@ You can use the channel in your via() method inside the notification:
 
 ```php
 use Illuminate\Notifications\Notification;
-use NotificationChannels\Smspoh\SmspohMessage;
+use NotificationChannels\Ombala\OmbalaMessage;
 
 class AccountApproved extends Notification
 {
     public function via($notifiable)
     {
-        return ["smspoh"];
+        return ["ombala"];
     }
 
-    public function toSmspoh($notifiable)
+    public function toOmbala($notifiable)
     {
-        return (new SmspohMessage)->content("Your account was approved!");       
+        return (new OmbalaMessage)->content("Your account was approved!");       
     }
 }
 ```
 
-In your notifiable model, make sure to include a routeNotificationForSmspoh() method, which returns a phone number or an array of phone numbers.
+In your notifiable model, make sure to include a routeNotificationForOmbala() method, which returns a phone number or an array of phone numbers.
 
 ```php
-public function routeNotificationForSmspoh()
+public function routeNotificationForOmbala()
 {
     return $this->phone;
 }
@@ -78,12 +78,12 @@ public function routeNotificationForSmspoh()
 Sometimes you may need to send a notification to someone who is not stored as a "user" of your application. Using the Notification::route method, you may specify ad-hoc notification routing information before sending the notification:
 
 ```php
-Notification::route('smspoh', '5555555555')                      
+Notification::route('ombala', '9123123321')                      
             ->notify(new InvoicePaid($invoice));
 ```
 ### Available Message methods
 
-`sender()`: Sets the sender's name. *Make sure to register the sender name at you SmsPoh dashboard.*
+`from()`: Sets the from's name. *Make sure to register the from name at you Ombala dashboard.*
 
 `content()`: Set a content of the notification message. This parameter should be no longer than 918 char(6 message parts),
 
@@ -101,7 +101,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 ## Contributing
 
-Please see [CONTRIBUTING](https://github.com/laravel-notification-channels/smspoh/blob/master/.github/CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](https://github.com/dsilva01/ombala-sms/blob/master/.github/CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 

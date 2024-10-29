@@ -1,8 +1,8 @@
 <?php
 
-namespace NotificationChannels\Smspoh;
+namespace NotificationChannels\Ombala;
 
-class SmspohMessage
+class OmbalaMessage
 {
     /**
      * The message content.
@@ -16,14 +16,7 @@ class SmspohMessage
      *
      * @var string
      */
-    public $sender;
-
-    /**
-     * Set the test message Send a test message to specific mobile number.
-     *
-     * @var bool
-     */
-    public $test = false;
+    public $from;
 
     /**
      * Create a new message instance.
@@ -50,27 +43,14 @@ class SmspohMessage
     }
 
     /**
-     * Set the sender name the message should be sent from.
+     * Set the from name the message should be sent from.
      *
-     * @param  string  $sender
+     * @param  string  $from
      * @return $this
      */
-    public function sender($sender)
+    public function from($from)
     {
-        $this->sender = $sender;
-
-        return $this;
-    }
-
-    /**
-     * Set the test message Send a test message to specific mobile number.
-     *
-     * @param  bool  $test
-     * @return $this
-     */
-    public function test($test = true)
-    {
-        $this->test = $test;
+        $this->from = $from;
 
         return $this;
     }

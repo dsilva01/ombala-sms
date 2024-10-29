@@ -1,13 +1,13 @@
 <?php
 
-namespace NotificationChannels\Smspoh;
+namespace NotificationChannels\Ombala;
 
 use GuzzleHttp\Client as HttpClient;
 use Illuminate\Notifications\ChannelManager;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\ServiceProvider;
 
-class SmspohServiceProvider extends ServiceProvider
+class OmbalaServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -21,15 +21,15 @@ class SmspohServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(SmspohApi::class, static fn () => new SmspohApi(
-            config('services.smspoh.token'),
+        $this->app->bind(OmbalaApi::class, static fn () => new OmbalaApi(
+            config('services.ombala.token'),
             app(HttpClient::class)
         ));
 
         Notification::resolved(static function (ChannelManager $service) {
-            $service->extend('smspoh', static fn ($app) => new SmspohChannel(
-                $app[SmspohApi::class],
-                $app['config']['services.smspoh.sender'])
+            $service->extend('ombala', static fn ($app) => new OmbalaChannel(
+                $app[OmbalaApi::class],
+                $app['config']['services.ombala.from'])
             );
         });
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\Smspoh\Tests\TestSupport;
+namespace NotificationChannels\Ombala\Tests\TestSupport;
 
 use Illuminate\Notifications\Notifiable;
 
@@ -8,9 +8,9 @@ class TestNotifiable
 {
     use Notifiable;
 
-    public string $phone_number = '5555555555';
+    public string $phone_number = '9123123321';
 
-    public function routeNotificationForSmspoh($notification)
+    public function routeNotificationForOmbala($notification)
     {
         return $this->phone_number;
     }
