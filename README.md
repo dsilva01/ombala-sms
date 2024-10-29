@@ -1,8 +1,8 @@
 # Ombala Notifications Channel for Laravel
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/ombala.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/ombala)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/ombala.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/ombala)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/laravel-notification-channels/ombala/run-tests.yml?style=flat-square)](https://github.com/dsilva01/ombala-sms/actions/workflows/run-tests.yml)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/dsilva01/ombala-sms.svg?style=flat-square)](https://packagist.org/packages/dsilva01/ombala)
+[![Total Downloads](https://img.shields.io/packagist/dt/dsilva01/ombala-sms.svg?style=flat-square)](https://packagist.org/packages/dsilva01/ombala)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/dsilva01/ombala-sms/run-tests.yml?style=flat-square)](https://github.com/dsilva01/ombala-sms/actions/workflows/run-tests.yml)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 
 This package makes it easy to send notifications using [Ombala](https://www.useombala.ao/) with Laravel and 9.x and 10.x.
